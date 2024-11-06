@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles de l'en-tête */
+header {
+    background-color: #f4f4f4;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+header h1 {
+    font-family: 'Nickainley', serif;
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+    flex-grow: 1;
+    text-align: left;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    color: #b08b6e; /* couleur marron clair pour l'effet hover */
+}
+
+nav a:first-child {
+    color: #b08b6e; /* couleur marron clair pour le lien actif (Home) */
+}
+
+
+/* About Us content container */
+.about-us-content {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Image styling */
+.about-image {
+    flex: 1;
+    max-width: 40%; /* Adjust width as needed */
+    margin-right: 20px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Text content styling */
+.about-text {
+    flex: 2;
+    font-family: Arial, sans-serif;
+}
+
+.about-text h2 {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    color: #8B4513;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 16px;
+    color: #A0522D;
+    line-height: 1.6;
+    font-family: 'Glass Antiqua', sans-serif;
+    line-height: 1.6;
+    text-align: justify;
+}
