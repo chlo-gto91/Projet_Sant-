@@ -89,3 +89,36 @@ nav a:first-child {
     line-height: 1.6;
     text-align: justify;
 }
+
+/* Styles pour la section Contact Us */
+.contact-us {
+    background-color: #f9f9f9;
+    padding: 40px;
+    text-align: center;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.contact-us h2 {
+    font-family: 'Glass Antiqua', sans-serif;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-us p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.contact-us a {
+    color: #b08b6e;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contact-us a:hover {
+    text-decoration: underline;
+}
