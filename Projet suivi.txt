@@ -1,4 +1,5 @@
 Question Laurent 
 
-Model ML
-BDD pour le formulaire ?
+- Model ML à vérifier
+- Faut-il créer une BDD pour renseigner les info du formulaire ?
+- Streamlit ou site internet classique ?

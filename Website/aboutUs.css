@@ -58,8 +58,8 @@ nav a:first-child {
 /* Image styling */
 .about-image {
     flex: 1;
-    max-width: 40%; /* Adjust width as needed */
-    margin-right: 20px;
+    max-width: 100%; 
+    margin-right: 55px;
 }
 
 .about-image img {
@@ -76,13 +76,13 @@ nav a:first-child {
 
 .about-text h2 {
     font-family: 'Georgia', serif;
-    font-size: 28px;
+    font-size: 40px;
     color: #8B4513;
     margin-bottom: 20px;
 }
 
 .about-text p {
-    font-size: 16px;
+    font-size: 21px;
     color: #A0522D;
     line-height: 1.6;
     font-family: 'Glass Antiqua', sans-serif;
