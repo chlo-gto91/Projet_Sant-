@@ -30,48 +30,99 @@
             <form>
                 <h3>Formulaire</h3>
                 <div class="form-grid">
+                    <label for="sexe">Sexe</label>
+                    <select id="sexe" name="sexe">
+                        <option value="homme">Homme</option>
+                        <option value="femme">Femme</option>
+                    </select>
+
                     <label for="age">Age</label>
-                    <input type="text" id="age" name="age">
+                    <input type="number" id="age" name="age" min="0" max="99">
     
-                    <label for="diabetes">Diabetes</label>
-                    <input type="text" id="diabetes" name="diabetes">
+                    <label for="poids">Poids (kg)</label>
+                    <input type="number" id="poids" name="poids" min="0" step="0.1" oninput="calculateBMI()">
     
-                    <label for="alcohol">Alcohol Consumption</label>
-                    <input type="text" id="alcohol" name="alcohol">
+                    <label for="taille">Taille (m)</label>
+                    <input type="number" id="taille" name="taille" min="1" step="0.01" oninput="calculateBMI()">
     
-                    <label for="triglycerides">Triglycerides</label>
-                    <input type="text" id="triglycerides" name="triglycerides">
+                    <label for="tension">Tension</label>
+                    <select id="tension" name="tension">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
     
-                    <label for="sex">Sex</label>
-                    <input type="text" id="sex" name="sex">
+                    <label for="bmi">IMC</label>
+                    <input type="text" id="bmi" name="bmi" readonly>
     
-                    <label for="family-history">Family History</label>
-                    <input type="text" id="family-history" name="family-history">
+                    <label for="cholesterol">Taux de Cholesterol (Oui si > 240 mg/dL (6.21 mmol/L) - Non sinon)</label>
+                    <select id="cholesterol" name="cholesterol">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+
+                    <label for="diabetes">Diabète</label>
+                    <select id="diabetes" name="diabetes">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
     
-                    <label for="exercise">Exercise Hours Per Week</label>
-                    <input type="text" id="exercise" name="exercise">
+                    <label for="Smoker">Fumeur (plus de 100 cigarettes dans votre vie)</label>
+                    <select id="Smoker" name="Smoker">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+
+                    <label for="activité_phys">Activité physique exercée régulièrement</label>
+                    <select id="activité_phys" name="activité_phys">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+
+                    <label for="avc">AVC</label>
+                    <select id="avc" name="avc">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
     
-                    <label for="heart-risk">Heart Attack Risk</label>
-                    <input type="text" id="heart-risk" name="heart-risk">
-    
-                    <label for="cholesterol">Cholesterol</label>
-                    <input type="text" id="cholesterol" name="cholesterol">
-    
-                    <label for="smoking">Smoking</label>
-                    <input type="text" id="smoking" name="smoking">
-    
-                    <label for="previous-problems">Previous Heart Problems</label>
-                    <input type="text" id="previous-problems" name="previous-problems">
-    
-                    <label for="heart-rate">Heart Rate</label>
-                    <input type="text" id="heart-rate" name="heart-rate">
-    
-                    <label for="obesity">Obesity</label>
-                    <input type="text" id="obesity" name="obesity">
-    
-                    <label for="medication">Medication Use</label>
-                    <input type="text" id="medication" name="medication">
+                    <label for="alcoolémie">Alcoolémie (plus de 7 verres par semaine)</label>
+                    <select id="alcoolémie" name="alcoolémie">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+
+                    <label for="DiffWalk">Difficultés physiques</label>
+                    <select id="DiffWalk" name="DiffWalk">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+
+                    <label for="education">Nombre d'années de formation après le bac</label>
+                    <select id="education" name="education">
+                        <!-- Menu déroulant pour 1 à 20 ans d'éducation -->
+                        <script>
+                            for (let i = 1; i <= 20; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+
+                    <label for="income">Income</label>
+                    <input type="text" id="income" name="income">
                 </div>
+
+                <script>
+                    function calculateBMI() {
+                        const poids = parseFloat(document.getElementById("poids").value);
+                        const taille = parseFloat(document.getElementById("taille").value);
+                        
+                        if (poids > 0 && taille > 1) {
+                            const bmi = (poids / (taille * taille)).toFixed(2);
+                            document.getElementById("bmi").value = bmi;
+                        } else {
+                            document.getElementById("bmi").value = "";
+                        }
+                    }
+                </script>
     
                 <button type="submit" class="submit-btn">Result</button>
             </form>
