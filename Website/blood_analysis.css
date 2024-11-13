@@ -72,16 +72,20 @@ body {
 }
 
 h1 {
-    font-size: 3rem;
-    color: #6c6c6c;
+    font-size: 2.3rem;
     margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+    color: #8B4513;
 }
 
-h2 {
-    font-size: 1.5rem;
-    color: #333;
+/* h2 {
+    font-size: 1.3rem;
     margin-bottom: 20px;
-}
+
+    color: black;
+    line-height: 1.6;
+    font-family: 'Glass Antiqua', sans-serif;
+} */
 
 form {
     margin-top: 20px;
@@ -89,8 +93,9 @@ form {
 
 h3 {
     font-size: 1.2rem;
-    color: #333;
     margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+    color: #8B4513;
 }
 
 .form-grid {
@@ -135,3 +140,12 @@ input[type="text"] {
     width: 100px;
     height: auto;
 }
+
+h4 {
+    font-size: 22px;
+    color: #A0522D;
+    line-height: 1.6;
+    font-family: 'Glass Antiqua', sans-serif;
+    text-align: center;
+}
+    

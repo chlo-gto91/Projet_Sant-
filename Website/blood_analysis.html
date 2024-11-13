@@ -20,117 +20,156 @@
         </nav>
     </header>
 
-    <body>
-        <div class="container">
-            <div class="header">
-                <h1>Analysis</h1>
-                <h2>Cardiovascular disease risks detection</h2>
-            </div>
-    
-            <form>
-                <h3>Formulaire</h3>
-                <div class="form-grid">
-                    <label for="sexe">Sexe</label>
-                    <select id="sexe" name="sexe">
-                        <option value="homme">Homme</option>
-                        <option value="femme">Femme</option>
-                    </select>
-
-                    <label for="age">Age</label>
-                    <input type="number" id="age" name="age" min="0" max="99">
-    
-                    <label for="poids">Poids (kg)</label>
-                    <input type="number" id="poids" name="poids" min="0" step="0.1" oninput="calculateBMI()">
-    
-                    <label for="taille">Taille (m)</label>
-                    <input type="number" id="taille" name="taille" min="1" step="0.01" oninput="calculateBMI()">
-    
-                    <label for="tension">Tension</label>
-                    <select id="tension" name="tension">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-    
-                    <label for="bmi">IMC</label>
-                    <input type="text" id="bmi" name="bmi" readonly>
-    
-                    <label for="cholesterol">Taux de Cholesterol (Oui si > 240 mg/dL (6.21 mmol/L) - Non sinon)</label>
-                    <select id="cholesterol" name="cholesterol">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-
-                    <label for="diabetes">Diabète</label>
-                    <select id="diabetes" name="diabetes">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-    
-                    <label for="Smoker">Fumeur (plus de 100 cigarettes dans votre vie)</label>
-                    <select id="Smoker" name="Smoker">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-
-                    <label for="activité_phys">Activité physique exercée régulièrement</label>
-                    <select id="activité_phys" name="activité_phys">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-
-                    <label for="avc">AVC</label>
-                    <select id="avc" name="avc">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-    
-                    <label for="alcoolémie">Alcoolémie (plus de 7 verres par semaine)</label>
-                    <select id="alcoolémie" name="alcoolémie">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-
-                    <label for="DiffWalk">Difficultés physiques</label>
-                    <select id="DiffWalk" name="DiffWalk">
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-
-                    <label for="education">Nombre d'années de formation après le bac</label>
-                    <select id="education" name="education">
-                        <!-- Menu déroulant pour 1 à 20 ans d'éducation -->
-                        <script>
-                            for (let i = 1; i <= 20; i++) {
-                                document.write(`<option value="${i}">${i}</option>`);
-                            }
-                        </script>
-                    </select>
-
-                    <label for="income">Income</label>
-                    <input type="text" id="income" name="income">
-                </div>
-
-                <script>
-                    function calculateBMI() {
-                        const poids = parseFloat(document.getElementById("poids").value);
-                        const taille = parseFloat(document.getElementById("taille").value);
-                        
-                        if (poids > 0 && taille > 1) {
-                            const bmi = (poids / (taille * taille)).toFixed(2);
-                            document.getElementById("bmi").value = bmi;
-                        } else {
-                            document.getElementById("bmi").value = "";
-                        }
-                    }
-                </script>
-    
-                <button type="submit" class="submit-btn">Result</button>
-            </form>
-    
-            <div class="image-container">
-                <img src="prise de sang.jpg" alt="Prise de sang">
-            </div>
+    <div class="container">
+        <div class="header">
+            <h1>Analysis : Cardiovascular disease risks detection</h1>
+            
         </div>
-    </body>
-    
-    </html>
+
+        <form id="riskForm">
+            <h3>Formulaire<br><br><br></h3>
+            <div class="form-grid">
+                <label for="sexe">Sexe</label>
+                <select id="sexe" name="sexe">
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                </select>
+
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" min="0" max="99">
+
+                <label for="poids">Poids (kg)</label>
+                <input type="number" id="poids" name="poids" min="0" step="0.1" oninput="calculateBMI()">
+
+                <label for="taille">Taille (m)</label>
+                <input type="number" id="taille" name="taille" min="1" step="0.01" oninput="calculateBMI()">
+
+                <label for="tension">Tension</label>
+                <select id="tension" name="tension">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="bmi">IMC</label>
+                <input type="text" id="bmi" name="bmi" readonly>
+
+                <label for="cholesterol">Taux de Cholesterol</label>
+                <select id="cholesterol" name="cholesterol">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="diabetes">Diabète</label>
+                <select id="diabetes" name="diabetes">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="Smoker">Fumeur</label>
+                <select id="Smoker" name="Smoker">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="activité_phys">Activité physique régulière</label>
+                <select id="activité_phys" name="activité_phys">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="avc">AVC</label>
+                <select id="avc" name="avc">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="alcoolémie">Alcoolémie</label>
+                <select id="alcoolémie" name="alcoolémie">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="DiffWalk">Difficultés physiques</label>
+                <select id="DiffWalk" name="DiffWalk">
+                    <option value="oui">Oui</option>
+                    <option value="non">Non</option>
+                </select>
+
+                <label for="education">Années de formation après le bac</label>
+                <select id="education" name="education">
+                    <script>
+                        for (let i = 1; i <= 20; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+
+                <label for="income">Income</label>
+                <input type="text" id="income" name="income">
+            </div>
+
+            <script>
+                // Script de calcule IMC
+                function calculateBMI() {
+                    const poids = parseFloat(document.getElementById("poids").value);
+                    const taille = parseFloat(document.getElementById("taille").value);
+                    
+                    if (poids > 0 && taille > 1) {
+                        const bmi = (poids / (taille * taille)).toFixed(2);
+                        document.getElementById("bmi").value = bmi;
+                    } else {
+                        document.getElementById("bmi").value = "";
+                    }
+                }
+
+                function gatherFormData() {
+                    const formData = {
+                        sexe: document.getElementById("sexe").value,
+                        age: document.getElementById("age").value,
+                        bmi: document.getElementById("bmi").value,
+                        tension: document.getElementById("tension").value,
+                        cholesterol: document.getElementById("cholesterol").value,
+                        diabetes: document.getElementById("diabetes").value,
+                        smoker: document.getElementById("Smoker").value,
+                        activite_physique: document.getElementById("activité_phys").value,
+                        avc: document.getElementById("avc").value,
+                        alcoolemie: document.getElementById("alcoolémie").value,
+                        diffWalk: document.getElementById("DiffWalk").value,
+                        education: document.getElementById("education").value,
+                        income: document.getElementById("income").value
+                    };
+
+                    // Affiche les données sur la page
+                    displayFormData(formData);
+                }
+
+                function displayFormData(data) {
+                    // Sélection de l'élément d'affichage
+                    const resultDisplay = document.getElementById("resultDisplay");
+                    resultDisplay.innerHTML = "<h4><br>Voici vos données personnelles. Merci de vérifier qu'elles soient correctes, sinon modifiez les dans le formulaire précédent :</h3>";
+
+                    // Affiche chaque donnée sous forme de liste
+                    for (const key in data) {
+                        resultDisplay.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    document.querySelector(".submit-btn").addEventListener("click", function (event) {
+                        event.preventDefault();
+                        gatherFormData();
+                    });
+                });
+            </script>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div id="resultDisplay" class="result-display"></div> <!-- Section pour afficher les résultats -->
+
+        <div class="image-container">
+            <img src="prise de sang.jpg" alt="Prise de sang">
+        </div>
+    </div>
+</body>
+</html>
