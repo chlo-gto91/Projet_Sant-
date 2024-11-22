@@ -130,3 +130,12 @@ select {
     line-height: 1.6;
     font-family: 'Glass Antiqua', sans-serif;
 }
+
+.info-icon {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #007BFF;
+}
+.info-icon:hover {
+    color: #0056b3;
+}

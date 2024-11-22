@@ -44,7 +44,9 @@
                 <label for="taille">Taille (m)</label>
                 <input type="number" id="taille" name="taille" min="1" step="0.01" oninput="calculateBMI()">
 
-                <label for="tension">Tension</label>
+                <label for="tension">Tension
+                    <span class="info-icon" title="Dites oui si votre tension artérielle est élevée.">&#x1F6C8;</span>
+                </label>
                 <select id="tension" name="tension">
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
@@ -53,13 +55,17 @@
                 <label for="bmi">IMC</label>
                 <input type="text" id="bmi" name="bmi" readonly>
 
-                <label for="cholesterol">Taux de Cholesterol</label>
+                <label for="cholesterol">Taux de Cholesterol
+                    <span class="info-icon" title="Dites oui si votre taux de cholestérol est supérieur à la normale.">&#x1F6C8;</span>
+                </label>
                 <select id="cholesterol" name="cholesterol">
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
                 </select>
 
-                <label for="diabetes">Diabète</label>
+                <label for="diabetes">Diabète
+                    <span class="info-icon" title="Indiquez votre niveau de diabète (0 : aucun, 1 : pré-diabète, 2 : diabète confirmé).">&#x1F6C8;</span>
+                </label>
                 <select id="diabetes" name="diabetes">
                     <script>
                         for (let i = 0; i <= 2; i++) {
@@ -68,37 +74,49 @@
                     </script>
                 </select>
 
-                <label for="Smoker">Fumeur</label>
+                <label for="Smoker">Fumeur
+                    <span class="info-icon" title="Dites oui si vous fumez régulièrement ou avez fumé récemment.">&#x1F6C8;</span>
+                </label>
                 <select id="Smoker" name="Smoker">
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
                 </select>
 
-                <label for="activité_phys">Activité physique régulière</label>
+                <label for="activité_phys">Activité physique régulière
+                    <span class="info-icon" title="Dites oui si vous pratiquez une activité physique au moins 3 fois par semaine.">&#x1F6C8;</span>
+                </label>
                 <select id="activité_phys" name="activité_phys">
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
                 </select>
 
-                <label for="avc">AVC</label>
+                <label for="avc">AVC
+                    <span class="info-icon" title="Dites oui si vous avez déjà subi un accident vasculaire cérébral.">&#x1F6C8;</span>
+                </label>
                 <select id="avc" name="avc">
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
                 </select>
 
-                <label for="alcoolémie">Alcoolémie</label>
+                <label for="alcoolémie">Alcoolémie
+                    <span class="info-icon" title="Dites oui si vous consommez plus d'un verre d'alcool par semaine.">&#x1F6C8;</span>
+                </label>
                 <select id="alcoolémie" name="alcoolémie">
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
                 </select>
 
-                <label for="DiffWalk">Difficultés physiques</label>
+                <label for="DiffWalk">Difficultés physiques
+                    <span class="info-icon" title="Dites oui si vous avez des difficultés à marcher ou à vous déplacer.">&#x1F6C8;</span>
+                </label>
                 <select id="DiffWalk" name="DiffWalk">
                     <option value="oui">Oui</option>
                     <option value="non">Non</option>
                 </select>
 
-                <label for="education">Années de formation après le bac</label>
+                <label for="education">Années de formation après le bac
+                    <span class="info-icon" title="Indiquez le nombre d'années de formation après l'obtention du baccalauréat.">&#x1F6C8;</span>
+                </label>
                 <select id="education" name="education">
                     <script>
                         for (let i = 1; i <= 20; i++) {
