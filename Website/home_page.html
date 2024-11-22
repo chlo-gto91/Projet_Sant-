@@ -8,6 +8,25 @@
     <!-- Lien vers le fichier CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="home_page.css">
+    <script>
+        function checkAnswer(questionId, correctAnswer) {
+            const userAnswer = document.querySelector(`input[name="${questionId}"]:checked`);
+            const feedback = document.getElementById(`feedback-${questionId}`);
+
+            if (userAnswer) {
+                if (userAnswer.value === correctAnswer) {
+                    feedback.textContent = "Correct!";
+                    feedback.style.color = "green";
+                } else {
+                    feedback.textContent = "Incorrect. Try again!";
+                    feedback.style.color = "red";
+                }
+            } else {
+                feedback.textContent = "Please select an answer.";
+                feedback.style.color = "orange";
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -28,9 +47,10 @@
 
     <!-- Contenu principal -->
     <div class="content">
+
         <h2>The Latest Health News and Blood Test Insights</h2>
         <p>
-            Did you know that over 70% of medical decisions are based on blood test results? <br>Regular blood tests are crucial for detecting early signs of various conditions, including diabetes, heart disease, liver disorders, and vitamin deficiencies. Catching these indicators early enables timely intervention, which can make a significant difference in managing or even preventing certain illnesses.<br><br>
+            Did you know that many of medical decisions are based on blood test results? <br>Regular blood tests are crucial for detecting early signs of various conditions, including diabetes, heart disease, liver disorders, and vitamin deficiencies. Catching these indicators early enables timely intervention, which can make a significant difference in managing or even preventing certain illnesses.<br><br>
             Beyond diagnosis, blood tests can offer a window into your overall health, tracking markers like cholesterol, blood sugar, and inflammation levels. Keeping tabs on these metrics not only aids in preventing diseases but also helps in monitoring the effectiveness of treatments. With advancements in medical technology, new blood tests are being developed that can detect even the smallest changes in your health, from specific nutrient imbalances to genetic predispositions for certain conditions.
 
             <br><br>In addition to interpreting results, we provide insights into the latest trends in medical research and actionable tips for maintaining optimal health. Our mission is to empower you with the knowledge to make informed decisions and take proactive steps towards a healthier, more balanced life. Whether you're managing a chronic condition or simply optimizing wellness, we’re here to guide you on every step of your health journey.
@@ -42,6 +62,53 @@
         <div class="nurse-image">
             <img src="nurse.png" alt="Nurse drawing taking blood sample">
         </div>
+
+        <!-- Quiz Section -->
+        <div class="quiz">
+            <h2>Test Your Knowledge: True or False</h2>
+            <div class="question">
+                <p><strong>Question 1:</strong> Regular blood tests can help in the early detection of cardiovascular diseases.</p>
+                <label><input type="radio" name="q1" value="true"> True</label><br>
+                <label><input type="radio" name="q1" value="false"> False</label><br>
+                <button onclick="checkAnswer('q1', 'true')">Submit</button>
+                <p id="feedback-q1" class="feedback"></p>
+            </div>
+            <div class="question">
+                <p><strong>Question 2:</strong> Blood tests are only useful for diagnosing illnesses, not for preventive care.</p>
+                <label><input type="radio" name="q2" value="true"> True</label><br>
+                <label><input type="radio" name="q2" value="false"> False</label><br>
+                <button onclick="checkAnswer('q2', 'false')">Submit</button>
+                <p id="feedback-q2" class="feedback"></p>
+            </div>
+            <div class="question">
+                <p><strong>Question 3:</strong> There's no need to take a blood test if you feel healthy.</p>
+                <label><input type="radio" name="q3" value="true"> True</label><br>
+                <label><input type="radio" name="q3" value="false"> False</label><br>
+                <button onclick="checkAnswer('q3', 'false')">Submit</button>
+                <p id="feedback-q3" class="feedback"></p>
+            </div>
+            <div class="question">
+                <p><strong>Question 4:</strong> Blood tests can reveal early signs of cancer.</p>
+                <label><input type="radio" name="q4" value="true"> True</label><br>
+                <label><input type="radio" name="q4" value="false"> False</label><br>
+                <button onclick="checkAnswer('q4', 'true')">Submit</button>
+                <p id="feedback-q4" class="feedback"></p>
+            </div>
+            <div class="question">
+                <p><strong>Question 5:</strong> A blood test can only detect serious illnesses.</p>
+                <label><input type="radio" name="q5" value="true"> True</label><br>
+                <label><input type="radio" name="q5" value="false"> False</label><br>
+                <button onclick="checkAnswer('q5', 'false')">Submit</button>
+                <p id="feedback-q5" class="feedback"></p>
+            </div>
+            <div class="question">
+                <p><strong>Question 6:</strong> Taking a blood sample can help you assess the functioning of your organs, such as the liver or kidneys.</p>
+                <label><input type="radio" name="q6" value="true"> True</label><br>
+                <label><input type="radio" name="q6" value="false"> False</label><br>
+                <button onclick="checkAnswer('q6', 'true')">Submit</button>
+                <p id="feedback-q6" class="feedback"></p>
+            </div>
+        </div>
     </div>
 
     <!--  
@@ -49,7 +116,5 @@
         &copy; 2024 Cardiovascular Disease Risks Detection. All rights reserved.
     </footer>  -->
     
-    
-
 </body>
 </html>
