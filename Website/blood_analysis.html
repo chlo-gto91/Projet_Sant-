@@ -23,12 +23,12 @@
     <div class="container">
         <div class="header">
             <h1>Analysis : Cardiovascular disease risks detection</h1>
-            
         </div>
 
         <form id="riskForm">
             <h3>Formulaire<br><br><br></h3>
             <div class="form-grid">
+                <!-- Formulaire -->
                 <label for="sexe">Sexe</label>
                 <select id="sexe" name="sexe">
                     <option value="homme">Homme</option>
@@ -61,8 +61,11 @@
 
                 <label for="diabetes">Diabète</label>
                 <select id="diabetes" name="diabetes">
-                    <option value="oui">Oui</option>
-                    <option value="non">Non</option>
+                    <script>
+                        for (let i = 0; i <= 2; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
                 </select>
 
                 <label for="Smoker">Fumeur</label>
@@ -106,7 +109,6 @@
 
                 <label for="income">Income</label>
                 <input type="text" id="income" name="income">
-                
             </div>
 
             <script>
@@ -114,7 +116,7 @@
                 function calculateBMI() {
                     const poids = parseFloat(document.getElementById("poids").value);
                     const taille = parseFloat(document.getElementById("taille").value);
-                    
+
                     if (poids > 0 && taille > 1) {
                         const bmi = (poids / (taille * taille)).toFixed(2);
                         document.getElementById("bmi").value = bmi;
@@ -124,35 +126,96 @@
                 }
 
                 function gatherFormData() {
+                    const ageCategory = (age) => {
+                        if (age >= 18 && age <= 24) return 1;
+                        if (age >= 25 && age <= 29) return 2;
+                        if (age >= 30 && age <= 34) return 3;
+                        if (age >= 35 && age <= 39) return 4;
+                        if (age >= 40 && age <= 44) return 5;
+                        if (age >= 45 && age <= 49) return 6;
+                        if (age >= 50 && age <= 54) return 7;
+                        if (age >= 55 && age <= 59) return 8;
+                        if (age >= 60 && age <= 64) return 9;
+                        if (age >= 65 && age <= 69) return 10;
+                        if (age >= 70 && age <= 74) return 11;
+                        if (age >= 75 && age <= 79) return 12;
+                        if (age >= 80) return 13;
+                        return 0;
+                    };
+
                     const formData = {
-                        sexe: document.getElementById("sexe").value,
-                        age: document.getElementById("age").value,
+                        sexe: document.getElementById("sexe").value === "homme" ? 1 : 0,
+                        age: ageCategory(parseInt(document.getElementById("age").value)),
                         bmi: document.getElementById("bmi").value,
-                        tension: document.getElementById("tension").value,
-                        cholesterol: document.getElementById("cholesterol").value,
-                        diabetes: document.getElementById("diabetes").value,
-                        smoker: document.getElementById("Smoker").value,
-                        activite_physique: document.getElementById("activité_phys").value,
-                        avc: document.getElementById("avc").value,
-                        alcoolemie: document.getElementById("alcoolémie").value,
-                        diffWalk: document.getElementById("DiffWalk").value,
-                        education: document.getElementById("education").value,
+                        tension: document.getElementById("tension").value === "oui" ? 1 : 0,
+                        cholesterol: document.getElementById("cholesterol").value === "oui" ? 1 : 0,
+                        diabetes: parseInt(document.getElementById("diabetes").value),
+                        smoker: document.getElementById("Smoker").value === "oui" ? 1 : 0,
+                        activite_physique: document.getElementById("activité_phys").value === "oui" ? 1 : 0,
+                        avc: document.getElementById("avc").value === "oui" ? 1 : 0,
+                        alcoolemie: document.getElementById("alcoolémie").value === "oui" ? 1 : 0,
+                        diffWalk: document.getElementById("DiffWalk").value === "oui" ? 1 : 0,
+                        education: parseInt(document.getElementById("education").value),
                         income: document.getElementById("income").value
                     };
 
-                    // Affiche les données sur la page
                     displayFormData(formData);
                 }
 
                 function displayFormData(data) {
-                    // Sélection de l'élément d'affichage
+                    const readableData = {
+                        Sexe: data.sexe === 1 ? "Homme" : "Femme",
+                        Age: decodeAgeCategory(data.age),
+                        "IMC (BMI)": data.bmi,
+                        Tension: data.tension === 1 ? "Oui" : "Non",
+                        Cholesterol: data.cholesterol === 1 ? "Oui" : "Non",
+                        Diabète: data.diabetes,
+                        Fumeur: data.smoker === 1 ? "Oui" : "Non",
+                        "Activité physique régulière": data.activite_physique === 1 ? "Oui" : "Non",
+                        AVC: data.avc === 1 ? "Oui" : "Non",
+                        Alcoolémie: data.alcoolemie === 1 ? "Oui" : "Non",
+                        "Difficultés physiques": data.diffWalk === 1 ? "Oui" : "Non",
+                        "Années de formation après le bac": data.education,
+                        Revenu: data.income
+                    };
+                    
+                    // Données affichées
                     const resultDisplay = document.getElementById("resultDisplay");
-                    resultDisplay.innerHTML = "<h4><br>Voici vos données personnelles. Merci de vérifier qu'elles soient correctes, sinon modifiez les dans le formulaire précédent :</h3>";
+                    resultDisplay.innerHTML = "<h4><br>Voici vos données personnelles :</h4>";
 
-                    // Affiche chaque donnée sous forme de liste
-                    for (const key in data) {
-                        resultDisplay.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+                    for (const key in readableData) {
+                        resultDisplay.innerHTML += `<p><strong>${key}:</strong> ${readableData[key]}</p>`;
                     }
+
+
+                    // Données encodées
+                    const encodedDataDisplay = document.getElementById("encodedDataDisplay");
+                    encodedDataDisplay.innerHTML = "<h4>Données encodées pour le système :</h4>";
+
+                    for (const key in data) {
+                        encodedDataDisplay.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+                    }
+
+                    console.log("Données encodées pour le système :", data);
+                }
+
+                function decodeAgeCategory(category) {
+                    const ageMap = {
+                         1: "18-24 ans",
+                         2: "25-29 ans",
+                         3: "30-34 ans",
+                         4: "35-39 ans",
+                         5: "40-44 ans",
+                         6: "45-49 ans",
+                         7: "50-54 ans",
+                         8: "55-59 ans",
+                         9: "60-64 ans",
+                        10: "65-69 ans",
+                        11: "70-74 ans",
+                        12: "75-79 ans",
+                        13: "80 ans et plus"
+                    };
+                    return ageMap[category] || "Inconnu";
                 }
 
                 document.addEventListener("DOMContentLoaded", function () {
@@ -162,13 +225,13 @@
                     });
                 });
             </script>
-            
+
             <button type="submit" class="submit-btn">Submit</button>
         </form>
 
-        <div id="resultDisplay" class="result-display"></div> <!-- Section pour afficher les résultats -->
+        <div id="resultDisplay" class="result-display"></div> <!-- Données lisibles -->
+        <div id="encodedDataDisplay" class="result-display"></div> <!-- Données encodées -->
 
-    
     </div>
 </body>
 </html>
