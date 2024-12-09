@@ -3,14 +3,9 @@ import joblib
 import numpy as np
 # from sklearn.preprocessing import StandardScaler
 
-# Charger le modèle et initialiser le scaler
+# Charger le modèle et appeler le scaler
 model = joblib.load("ensemble_model_xgb2.joblib")
-scaler = joblib.load(scaler.pkl)
-
-# Assurez-vous de définir les caractéristiques attendues par le scaler
-# Exemple de valeurs pour ajuster le scaler (cela devrait correspondre aux données d'entraînement du modèle)
-dummy_data = np.array([[1, 1, 1, 1, 1, 1, 1, 1]])
-scaler.fit(dummy_data)
+scaler = joblib.load("scaler.pkl")
 
 app = Flask(__name__)
 
