@@ -21,13 +21,13 @@ def predict_risk(features):
 
 @app.route("/predict", methods=["POST"])
 def predictAction():
-    try:
-        data = request.json
-        features = data["features"]
-        prediction = predict_risk(features)
-        return jsonify({"prediction": prediction})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
+    data = request.json
+    print(data)
+    features = data["features"]
+    prediction = predict_risk(features)
+    return jsonify({"prediction": prediction})
+        
+    
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000,debug=True)

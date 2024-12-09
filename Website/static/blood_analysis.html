@@ -7,7 +7,7 @@
     <title>Cardiovascular Disease Risks Detection</title>
     <!-- Lien vers le fichier CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="blood_analysis.css">
+    <link rel="stylesheet" href="/static/blood_analysis.css">
 </head>
 <body>
 
@@ -202,12 +202,12 @@
                     return ageMap[category] || "Inconnu";
                 }
 
-                document.addEventListener("DOMContentLoaded", function () {
-                    document.querySelector(".submit-btn").addEventListener("click", function (event) {
-                        event.preventDefault();
-                        gatherFormData();
-                    });
-                });
+                // document.addEventListener("DOMContentLoaded", function () {
+                //    document.querySelector(".submit-btn").addEventListener("click", function (event) {
+                //        event.preventDefault();
+                //        gatherFormData();
+                //    });
+                //}); 
             </script>
 
             <button type="submit" class="submit-btn">Submit</button>
@@ -219,8 +219,10 @@
         <div id="resultDisplay"></div>
 
         <script>
-            document.getElementById("submitBtn").addEventListener("click", async () => {
+            document.getElementById("riskForm").addEventListener("submit", async (event) => {
                 // Récupérer les données encodées
+                console.log("Hello")
+                event.preventDefault()
                 const formData = {
                     sexe: document.getElementById("sexe").value === "homme" ? 1 : 0,
                     age: parseInt(document.getElementById("age").value),
