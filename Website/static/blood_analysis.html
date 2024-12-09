@@ -216,6 +216,38 @@
         <div id="resultDisplay" class="result-display"></div> <!-- Données lisibles -->
         <div id="encodedDataDisplay" class="result-display"></div> <!-- Données encodées -->
 
+        <div id="resultDisplay"></div>
+
+        <script>
+            document.getElementById("submitBtn").addEventListener("click", async () => {
+                // Récupérer les données encodées
+                const formData = {
+                    sexe: document.getElementById("sexe").value === "homme" ? 1 : 0,
+                    age: parseInt(document.getElementById("age").value),
+                    bmi: parseFloat(document.getElementById("bmi").value),
+                    tension: document.getElementById("tension").value === "oui" ? 1 : 0,
+                    cholesterol: document.getElementById("cholesterol").value === "oui" ? 1 : 0,
+                    avc: document.getElementById("avc").value === "oui" ? 1 : 0,
+                    diffWalk: document.getElementById("DiffWalk").value === "oui" ? 1 : 0,
+                    education: parseInt(document.getElementById("education").value),
+                    income: parseFloat(document.getElementById("income").value)
+                };
+    
+                // Envoyer les données au backend
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ features: Object.values(formData) })
+                });
+    
+                // Afficher les résultats
+                const result = await response.json();
+                document.getElementById("resultDisplay").innerText = JSON.stringify(result);
+            });
+        </script>
+    </body>
+    </html>
+
     </div>
 </body>
 </html>

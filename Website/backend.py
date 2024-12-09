@@ -1,25 +1,29 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import joblib
 import numpy as np
-# from sklearn.preprocessing import StandardScaler
 
 # Charger le modèle et appeler le scaler
 model = joblib.load("ensemble_model_xgb2.joblib")
 scaler = joblib.load("scaler.pkl")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
+
+# Route pour servir la page HTML
+@app.route("/")
+def serve_html():
+    return send_from_directory(app.static_folder, "blood_analysis.html")
 
 def predict_risk(features):
     # Mise à l’échelle des données
     scaled_features = scaler.transform([features])
-    # Prédiction avec le modèle
     prediction = model.predict(scaled_features)
     return prediction[0]
 
 @app.route("/predict", methods=["POST"])
 def predictAction():
     try:
-        features = request.json['features']
+        data = request.json
+        features = data["features"]
         prediction = predict_risk(features)
         return jsonify({"prediction": prediction})
     except Exception as e:
