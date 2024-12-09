@@ -3,8 +3,8 @@ import joblib
 import numpy as np
 
 # Charger le modèle et appeler le scaler
-model = joblib.load("ensemble_model_xgb2.joblib")
-scaler = joblib.load("scaler.pkl")
+model = joblib.load("models/ensemble_model_xgb2.joblib")
+scaler = joblib.load("models/scaler.pkl")
 
 app = Flask(__name__, static_folder='static')
 
