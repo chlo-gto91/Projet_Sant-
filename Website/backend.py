@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+# from sklearn.preprocessing import StandardScaler
 
 # Charger le modèle et initialiser le scaler
-model = joblib.load("model.joblib")
+model = joblib.load("ensemble_model_xgb2.joblib")
 scaler = joblib.load(scaler.pkl)
 
 # Assurez-vous de définir les caractéristiques attendues par le scaler
