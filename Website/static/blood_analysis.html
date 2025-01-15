@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,246 +11,146 @@
 </head>
 <body>
 
-    <header>
-        <h1>Cardiovascular Disease Risks Detection</h1>
-        <nav>
-            <a href="home_page.html">Home</a>
-            <a href="blood_analysis.html">Blood Analysis</a>
-            <a href="aboutUs.html">About Us</a>
-        </nav>
-    </header>
+<header>
+    <h1>Cardiovascular Disease Risks Detection</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blood_analysis">Blood Analysis</a>
+        <a href="/aboutUs">About Us</a>
+    </nav>
+</header>
 
-    <div class="container">
-        <div class="header">
-            <h1>Analysis : Cardiovascular disease risks detection</h1>
+<div class="container">
+    <div class="header">
+        <h1>Analysis: Cardiovascular Disease Risks Detection</h1>
+    </div>
+
+    <form id="riskForm">
+        <h3>Formulaire</h3>
+        <div class="form-grid">
+            <!-- Formulaire -->
+            <label for="sexe">Sexe</label>
+            <select id="sexe" name="sexe">
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
+
+            <label for="age">Âge</label>
+            <input type="number" id="age" name="age" min="0" max="99" required>
+
+            <label for="poids">Poids (kg)</label>
+            <input type="number" id="poids" name="poids" min="0" step="0.1" oninput="calculateBMI()" required>
+
+            <label for="taille">Taille (m)</label>
+            <input type="number" id="taille" name="taille" min="1" step="0.01" oninput="calculateBMI()" required>
+
+            <label for="tension">Tension Artérielle Élevée</label>
+            <select id="tension" name="tension">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+
+            <label for="bmi">IMC</label>
+            <input type="text" id="bmi" name="bmi" readonly>
+
+            <label for="cholesterol">Taux de Cholestérol Élevé</label>
+            <select id="cholesterol" name="cholesterol">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+
+            <label for="avc">AVC</label>
+            <select id="avc" name="avc">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+
+            <label for="DiffWalk">Difficultés Physiques</label>
+            <select id="DiffWalk" name="DiffWalk">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+
+            <label for="education">Années de Formation Après le Bac</label>
+            <select id="education" name="education">
+                <script>
+                    for (let i = 1; i <= 15; i++) {
+                        document.write(`<option value="${i}">${i}</option>`);
+                    }
+                </script>
+            </select>
+
+            <label for="income">Revenu Mensuel (€)</label>
+            <select id="income" name="income">
+            <script>
+                for (let i = 1; i <= 6; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                }
+            </script>
+            </select>
+            <!--<input type="number" id="income" name="income" required>-->
         </div>
 
-        <form id="riskForm">
-            <h3>Formulaire<br><br><br></h3>
-            <div class="form-grid">
-                <!-- Formulaire -->
-                <label for="sexe">Sexe</label>
-                <select id="sexe" name="sexe">
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                </select>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
 
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" min="0" max="99">
+    <!-- Zone d'affichage des résultats -->
+    <div id="resultDisplay" class="result-display"></div>
 
-                <label for="poids">Poids (kg)</label>
-                <input type="number" id="poids" name="poids" min="0" step="0.1" oninput="calculateBMI()">
+    <script>
+        // Calcul de l'IMC
+        function calculateBMI() {
+            const poids = parseFloat(document.getElementById("poids").value);
+            const taille = parseFloat(document.getElementById("taille").value);
 
-                <label for="taille">Taille (m)</label>
-                <input type="number" id="taille" name="taille" min="1" step="0.01" oninput="calculateBMI()">
+            if (poids > 0 && taille > 1) {
+                const bmi = (poids / (taille * taille)).toFixed(2);
+                document.getElementById("bmi").value = bmi;
+            } else {
+                document.getElementById("bmi").value = "";
+            }
+        }
 
-                <label for="tension">Tension
-                    <span class="info-icon" title="Dites oui si votre tension artérielle est élevée.">&#x1F6C8;</span>
-                </label>
-                <select id="tension" name="tension">
-                    <option value="oui">Oui</option>
-                    <option value="non">Non</option>
-                </select>
+        // Envoi des données et gestion des résultats
+        document.getElementById("riskForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
 
-                <label for="bmi">IMC</label>
-                <input type="text" id="bmi" name="bmi" readonly>
+            // Rassembler les données du formulaire
+            const formData = {
+                sexe: document.getElementById("sexe").value === "homme" ? 1 : 0,
+                age: parseInt(document.getElementById("age").value),
+                bmi: parseFloat(document.getElementById("bmi").value),
+                tension: document.getElementById("tension").value === "oui" ? 1 : 0,
+                cholesterol: document.getElementById("cholesterol").value === "oui" ? 1 : 0,
+                avc: document.getElementById("avc").value === "oui" ? 1 : 0,
+                diffWalk: document.getElementById("DiffWalk").value === "oui" ? 1 : 0,
+                education: parseInt(document.getElementById("education").value),
+                income: parseFloat(document.getElementById("income").value)
+            };
 
-                <label for="cholesterol">Taux de Cholesterol
-                    <span class="info-icon" title="Dites oui si votre taux de cholestérol est supérieur à la normale.">&#x1F6C8;</span>
-                </label>
-                <select id="cholesterol" name="cholesterol">
-                    <option value="oui">Oui</option>
-                    <option value="non">Non</option>
-                </select>
-
-                <label for="avc">AVC
-                    <span class="info-icon" title="Dites oui si vous avez déjà subi un accident vasculaire cérébral.">&#x1F6C8;</span>
-                </label>
-                <select id="avc" name="avc">
-                    <option value="oui">Oui</option>
-                    <option value="non">Non</option>
-                </select>
-
-
-                <label for="DiffWalk">Difficultés physiques
-                    <span class="info-icon" title="Dites oui si vous avez des difficultés à marcher ou à vous déplacer.">&#x1F6C8;</span>
-                </label>
-                <select id="DiffWalk" name="DiffWalk">
-                    <option value="oui">Oui</option>
-                    <option value="non">Non</option>
-                </select>
-
-                <label for="education">Années de formation après le bac
-                    <span class="info-icon" title="Indiquez le nombre d'années de formation après l'obtention du baccalauréat.">&#x1F6C8;</span>
-                </label>
-                <select id="education" name="education">
-                    <script>
-                        for (let i = 1; i <= 20; i++) {
-                            document.write(`<option value="${i}">${i}</option>`);
-                        }
-                    </script>
-                </select>
-
-                <label for="income">Income</label>
-                <input type="text" id="income" name="income">
-            </div>
-
-            <script>
-                // Script de calcule IMC
-                function calculateBMI() {
-                    const poids = parseFloat(document.getElementById("poids").value);
-                    const taille = parseFloat(document.getElementById("taille").value);
-
-                    if (poids > 0 && taille > 1) {
-                        const bmi = (poids / (taille * taille)).toFixed(2);
-                        document.getElementById("bmi").value = bmi;
-                    } else {
-                        document.getElementById("bmi").value = "";
-                    }
-                }
-
-                function gatherFormData() {
-                    const ageCategory = (age) => {
-                        if (age >= 18 && age <= 24) return 1;
-                        if (age >= 25 && age <= 29) return 2;
-                        if (age >= 30 && age <= 34) return 3;
-                        if (age >= 35 && age <= 39) return 4;
-                        if (age >= 40 && age <= 44) return 5;
-                        if (age >= 45 && age <= 49) return 6;
-                        if (age >= 50 && age <= 54) return 7;
-                        if (age >= 55 && age <= 59) return 8;
-                        if (age >= 60 && age <= 64) return 9;
-                        if (age >= 65 && age <= 69) return 10;
-                        if (age >= 70 && age <= 74) return 11;
-                        if (age >= 75 && age <= 79) return 12;
-                        if (age >= 80) return 13;
-                        return 0;
-                    };
-
-                    const formData = {
-                        sexe: document.getElementById("sexe").value === "homme" ? 1 : 0,
-                        age: ageCategory(parseInt(document.getElementById("age").value)),
-                        bmi: document.getElementById("bmi").value,
-                        tension: document.getElementById("tension").value === "oui" ? 1 : 0,
-                        cholesterol: document.getElementById("cholesterol").value === "oui" ? 1 : 0,
-                        //diabetes: parseInt(document.getElementById("diabetes").value),
-                        //smoker: document.getElementById("Smoker").value === "oui" ? 1 : 0,
-                        //activite_physique: document.getElementById("activité_phys").value === "oui" ? 1 : 0,
-                        avc: document.getElementById("avc").value === "oui" ? 1 : 0,
-                        //alcoolemie: document.getElementById("alcoolémie").value === "oui" ? 1 : 0,
-                        diffWalk: document.getElementById("DiffWalk").value === "oui" ? 1 : 0,
-                        education: parseInt(document.getElementById("education").value),
-                        income: document.getElementById("income").value
-                    };
-
-                    displayFormData(formData);
-                }
-
-                function displayFormData(data) {
-                    const readableData = {
-                        Sexe: data.sexe === 1 ? "Homme" : "Femme",
-                        Age: decodeAgeCategory(data.age),
-                        "IMC (BMI)": data.bmi,
-                        Tension: data.tension === 1 ? "Oui" : "Non",
-                        Cholesterol: data.cholesterol === 1 ? "Oui" : "Non",
-                        //Diabète: data.diabetes,
-                        //Fumeur: data.smoker === 1 ? "Oui" : "Non",
-                        //"Activité physique régulière": data.activite_physique === 1 ? "Oui" : "Non",
-                        AVC: data.avc === 1 ? "Oui" : "Non",
-                        //Alcoolémie: data.alcoolemie === 1 ? "Oui" : "Non",
-                        "Difficultés physiques": data.diffWalk === 1 ? "Oui" : "Non",
-                        "Années de formation après le bac": data.education,
-                        Revenu: data.income
-                    };
-                    
-                    // Données affichées
-                    const resultDisplay = document.getElementById("resultDisplay");
-                    resultDisplay.innerHTML = "<h4><br>Voici vos données personnelles :</h4>";
-
-                    for (const key in readableData) {
-                        resultDisplay.innerHTML += `<p><strong>${key}:</strong> ${readableData[key]}</p>`;
-                    }
-
-
-                    // Données encodées
-                    const encodedDataDisplay = document.getElementById("encodedDataDisplay");
-                    encodedDataDisplay.innerHTML = "<h4>Données encodées pour le système :</h4>";
-
-                    for (const key in data) {
-                        encodedDataDisplay.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
-                    }
-
-                    console.log("Données encodées pour le système :", data);
-                }
-
-                function decodeAgeCategory(category) {
-                    const ageMap = {
-                         1: "18-24 ans",
-                         2: "25-29 ans",
-                         3: "30-34 ans",
-                         4: "35-39 ans",
-                         5: "40-44 ans",
-                         6: "45-49 ans",
-                         7: "50-54 ans",
-                         8: "55-59 ans",
-                         9: "60-64 ans",
-                        10: "65-69 ans",
-                        11: "70-74 ans",
-                        12: "75-79 ans",
-                        13: "80 ans et plus"
-                    };
-                    return ageMap[category] || "Inconnu";
-                }
-
-                // document.addEventListener("DOMContentLoaded", function () {
-                //    document.querySelector(".submit-btn").addEventListener("click", function (event) {
-                //        event.preventDefault();
-                //        gatherFormData();
-                //    });
-                //}); 
-            </script>
-
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-
-        <div id="resultDisplay" class="result-display"></div> <!-- Données lisibles -->
-        <div id="encodedDataDisplay" class="result-display"></div> <!-- Données encodées -->
-
-        <div id="resultDisplay"></div>
-
-        <script>
-            document.getElementById("riskForm").addEventListener("submit", async (event) => {
-                // Récupérer les données encodées
-                console.log("Hello")
-                event.preventDefault()
-                const formData = {
-                    sexe: document.getElementById("sexe").value === "homme" ? 1 : 0,
-                    age: parseInt(document.getElementById("age").value),
-                    bmi: parseFloat(document.getElementById("bmi").value),
-                    tension: document.getElementById("tension").value === "oui" ? 1 : 0,
-                    cholesterol: document.getElementById("cholesterol").value === "oui" ? 1 : 0,
-                    avc: document.getElementById("avc").value === "oui" ? 1 : 0,
-                    diffWalk: document.getElementById("DiffWalk").value === "oui" ? 1 : 0,
-                    education: parseInt(document.getElementById("education").value),
-                    income: parseFloat(document.getElementById("income").value)
-                };
-    
+            try {
                 // Envoyer les données au backend
                 const response = await fetch("/predict", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
                     body: JSON.stringify({ features: Object.values(formData) })
                 });
-    
-                // Afficher les résultats
-                const result = await response.json();
-                document.getElementById("resultDisplay").innerText = JSON.stringify(result);
-            });
-        </script>
-    </body>
-    </html>
 
-    </div>
+                const result = await response.json();
+
+                // Afficher le message de résultat
+                const resultDiv = document.getElementById("resultDisplay");
+                resultDiv.innerHTML = `<h3>Résultat:</h3><p>${result.message}</p>`;
+                resultDiv.style.color = result.prediction === 0 ? "green" : "red";
+
+            } catch (error) {
+                console.error("Erreur lors de la soumission du formulaire :", error);
+            }
+        });
+    </script>
+</div>
+
 </body>
 </html>
-s
