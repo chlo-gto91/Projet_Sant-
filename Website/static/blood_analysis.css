@@ -131,6 +131,24 @@ select {
     font-family: 'Glass Antiqua', sans-serif;
 }
 
+p{
+    margin-bottom: 20px;
+}
+
+.result-display ul.commentaires {
+    margin: 10px 0;
+    padding: 0 15px;
+    color: black !important; 
+    font-size: 16px;
+    list-style-type: disc;
+}
+.commentaires li {
+    margin-bottom: 10px; /* Espacement entre chaque commentaire */
+    line-height: 1.5; /* Ajuste l'espacement des lignes pour une meilleure lisibilité */
+    text-align: center; /* Aligne les commentaires à gauche */
+}
+
+
 .info-icon {
     margin-left: 5px;
     cursor: pointer;
@@ -139,4 +157,3 @@ select {
 .info-icon:hover {
     color: #0056b3;
 }
-
