@@ -37,7 +37,7 @@ def predictAction():
     print(data)
     features = data["features"]
     prediction = predict_risk(features)
-    risk_message = "Risques faibles de maladies cardiovasculaires" if prediction == 0 else " Risques de maladies cardiovasculaires"
+    risk_message = "Low Cardovascular Diseases risk" if prediction == 0 else " Existing Cardiovascular Diseases risk"
     return jsonify({"prediction": prediction, "message": risk_message})
 
 if __name__ == "__main__":
